@@ -20,11 +20,11 @@ function read2Upload(_this){
 			    	      alert("请上传5M以内的.csv文件");
 			    	      return false;
 	    	    	 }else{
-				reader.onload = function(evt){				//单位KB
-		     	        var data = {"csvData":csvData,"fileName":fileName.substring(0,fileName.indexOf(".csv")),"fileDetails":JSON.stringify({"line":csvData.length,"size":(file.size/1024).toFixed(2)})};
-		     	         save(data);
-		     	         }
-	    	    	 }
+				reader.onload = function(evt){
+				// csvData 是将evt的结果转成与后端协商好的数据格式（一般是数组）
+		     	        var data = {"csvData":csvData,"fileName":fileName.substring(0,fileName.indexOf(".csv")),"fileDetails":JSON.stringify({"line":csvData.length,"size":(file.size/1024).toFixed(2)})};
+		     	         save(data);//调用后端的保存接口 
+	    	    	 	}
 		     	 }
 			 }else{
 				 alert("文件格式不正确,请上传.csv文件");
